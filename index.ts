@@ -2,6 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
+var sqlite = require("./modules/sqlite3");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -17,12 +18,45 @@ complete = [];
 app.post("/addtask", function (req: any, res: any) {
   var newTask = req.body.newtask;
   // Add the new task from the post route
-  task.push(newTask);
-  res.redirect("/");
+  sqlite.addTask(newTask, function () {
+    console.log("Added task " + newTask);
+    res.redirect("/");
+  });
 });
 
 app.post("/removetask", function (req: any, res: any) {
   var completeTask = req.body.check;
+  sqlite.completeTask(completeTask, function () {
+    res.redirect("/");
+  });
+});
+
+app.post("/clearcomplete", function(req: any, res:any){
+  sqlite.clearComplete(function(){
+    res.redirect("/");
+  });
+})
+
+// Render the ejs and display added task, completed task
+app.get("/", function (req: any, res: any) {
+  console.log("Refresh");
+  updateValues(function () {
+    res.render("index", { task: task, complete: complete });
+  });
+});
+
+// Set app to listen on port 3000
+app.listen(3000, function () {
+  updateValues(function () {
+    console.log("server is running on port 3000");
+  });
+});
+
+/**
+ * Marks a task as completed.
+ * @param completeTask Task to mark as completed.
+ */
+function removeTask(completeTask: any) {
   // Check for the "typeof" the different completed task, then add into the complete task
   if (typeof completeTask === "string") {
     complete.push(completeTask);
@@ -34,15 +68,19 @@ app.post("/removetask", function (req: any, res: any) {
       task.splice(task.indexOf(completeTask[i]), 1);
     }
   }
-  res.redirect("/");
-});
+}
 
-// Render the ejs and display added task, completed task
-app.get("/", function (req: any, res: any) {
-  res.render("index", { task: task, complete: complete });
-});
-
-// Set app to listen on port 3000
-app.listen(3000, function () {
-  console.log("server is running on port 3000");
-});
+/**
+ * Updates the todo/done lists.
+ */
+function updateValues(callback: any) {
+  sqlite.getTodoList(function (result: any) {
+    task = result;
+    sqlite.getDoneList(function (result: any) {
+      complete = result;
+      callback();
+      console.log("Tasks: " + JSON.stringify(task));
+      console.log("Completed: " + JSON.stringify(complete));
+    });
+  });
+}

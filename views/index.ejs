@@ -20,18 +20,23 @@
 
         <% for( var i = 0; i < task.length; i++){ %>
         <li>
-          <input type="checkbox" name="check" value="<%= task[i] %>" /> <%=
-          task[i] %>
+          <input type="checkbox" name="check" value="<%= task[i].task %>" /> <%=
+          task[i].task %>
         </li>
         <% } %>
 
-        <button formaction="/removetask" type="submit" id="top">Complete</button>
+        <button formaction="/removetask" type="submit" id="top">
+          Complete
+        </button>
+
+        <h2>Completed</h2>
+        <button formaction="/clearcomplete" type="submit" id="bottom">
+          Clear all tasks
+        </button>
       </form>
 
-      <h2>Completed</h2>
-
       <% for(var i = 0; i < complete.length; i++){ %>
-      <li><input type="checkbox" checked /><%= complete[i] %></li>
+      <li><input type="checkbox" checked disabled /><%= complete[i].task %></li>
       <% } %>
     </div>
   </body>
