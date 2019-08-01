@@ -1,6 +1,8 @@
 # todo-app
 ## A simple To-Do App built with Node.js and Express.
 
+<div style="text-align:center"><img src="image.jpg" /></div>
+
 # Installation
 
 1. Install all the required dependencies:

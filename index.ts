@@ -13,7 +13,7 @@ var task: string[], complete: string[];
 task = [];
 complete = [];
 
-// Addiing a new task.
+// Adding a new task.
 app.post("/addtask", function (req: any, res: any) {
   var newTask = req.body.newtask;
   // Add the new task from the post route
