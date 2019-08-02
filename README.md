@@ -1,4 +1,4 @@
-# todo-app
+# todo-mini
 ## A simple To-Do App built with Node.js and Express.
 
 <div style="text-align:center"><img src="image.jpg" /></div>
