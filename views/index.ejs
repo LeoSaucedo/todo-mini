@@ -13,17 +13,24 @@
       <h2>To-Dos</h2>
 
       <form action="/addtask" method="POST">
-        <input type="text" name="newtask" placeholder="add new task" />
+        <input
+          class="textbox"
+          type="text"
+          name="newtask"
+          placeholder="add new task"
+        />
         <button>Add Task</button>
 
         <h2>Incomplete</h2>
 
+        <ul>
         <% for( var i = 0; i < task.length; i++){ %>
         <li>
           <input type="checkbox" name="check" value="<%= task[i].task %>" /> <%=
           task[i].task %>
         </li>
         <% } %>
+        </ul>
 
         <button formaction="/removetask" type="submit" id="top">
           Complete
@@ -34,10 +41,11 @@
           Clear all tasks
         </button>
       </form>
-
+      <ul>
       <% for(var i = 0; i < complete.length; i++){ %>
       <li><input type="checkbox" checked disabled /><%= complete[i].task %></li>
       <% } %>
+      </ul>
     </div>
   </body>
 </html>

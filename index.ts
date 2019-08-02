@@ -19,7 +19,6 @@ app.post("/addtask", function (req: any, res: any) {
   var newTask = req.body.newtask;
   // Add the new task from the post route
   sqlite.addTask(newTask, function () {
-    console.log("Added task " + newTask);
     res.redirect("/");
   });
 });
@@ -39,7 +38,6 @@ app.post("/clearcomplete", function(req: any, res:any){
 
 // Render the ejs and display added task, completed task
 app.get("/", function (req: any, res: any) {
-  console.log("Refresh");
   updateValues(function () {
     res.render("index", { task: task, complete: complete });
   });
@@ -79,8 +77,6 @@ function updateValues(callback: any) {
     sqlite.getDoneList(function (result: any) {
       complete = result;
       callback();
-      console.log("Tasks: " + JSON.stringify(task));
-      console.log("Completed: " + JSON.stringify(complete));
     });
   });
 }

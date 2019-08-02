@@ -1,21 +1,87 @@
 * {
-    font-family: "lato", sans-serif;
-    font-weight: bold;
+  text-align: center;
+  font-family: "lato", sans-serif;
+  font-weight: bold;
 }
 
 body {
-    background: rgb(245, 245, 245);
-    color: #333333;
-    margin-top: 20px;
+  background: rgb(245, 245, 245);
+  color: #333333;
+  margin-top: 20px;
+  font-size: 5vw;
 }
 
 .container {
-    display: block;
-    width: 400px;
-    margin: 0 auto;
+  align-content: center;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
 }
 
 ul {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: left;
+}
+
+input[type="checkbox"] {
+  width: 3vw;
+  height: 3vw;
+}
+
+input[type="text"] {
+  height: 6vw;
+  font-size: 5vw;
+}
+
+button {
+  font-size: 5vw;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+@media screen and (min-width: 992px) {
+  * {
+    font-family: "lato", sans-serif;
+    font-weight: bold;
+  }
+
+  body {
+    background: rgb(245, 245, 245);
+    color: #333333;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .container {
+    align-content: center;
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  ul {
     margin: 0;
     padding: 0;
+  }
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  input[type="text"] {
+    height: 30px;
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+  }
 }
