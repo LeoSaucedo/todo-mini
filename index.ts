@@ -34,7 +34,7 @@ app.post("/clearcomplete", function(req: any, res:any){
   sqlite.clearComplete(function(){
     res.redirect("/");
   });
-})
+});
 
 // Render the ejs and display added task, completed task
 app.get("/", function (req: any, res: any) {

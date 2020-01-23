@@ -7,11 +7,9 @@
     />
     <link href="/styles.css" rel="stylesheet" />
   </head>
-
   <body>
     <div class="container">
       <h2>To-Dos</h2>
-
       <form action="/addtask" method="POST">
         <input
           class="textbox"
@@ -20,31 +18,29 @@
           placeholder="add new task"
         />
         <button>Add Task</button>
-
         <h2>Incomplete</h2>
-
         <ul>
-        <% for( var i = 0; i < task.length; i++){ %>
-        <li>
-          <input type="checkbox" name="check" value="<%= task[i].task %>" /> <%=
-          task[i].task %>
-        </li>
-        <% } %>
+          <% for( var i = 0; i < task.length; i++){ %>
+          <li>
+            <input type="checkbox" name="check" value="<%= task[i].task %>" />
+            <%= task[i].task %>
+          </li>
+          <% } %>
         </ul>
-
         <button formaction="/removetask" type="submit" id="top">
           Complete
         </button>
-
         <h2>Completed</h2>
         <button formaction="/clearcomplete" type="submit" id="bottom">
           Clear all tasks
         </button>
       </form>
       <ul>
-      <% for(var i = 0; i < complete.length; i++){ %>
-      <li><input type="checkbox" checked disabled /><%= complete[i].task %></li>
-      <% } %>
+        <% for(var i = 0; i < complete.length; i++){ %>
+        <li>
+          <input type="checkbox" checked disabled /><%= complete[i].task %>
+        </li>
+        <% } %>
       </ul>
     </div>
   </body>
